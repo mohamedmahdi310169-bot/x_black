@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>اختبار الاتصال بالخادم</title>
+<style>
+  body{font-family:sans-serif;background:#0f1420;color:#eef1f8;padding:20px;max-width:600px;margin:auto}
+  input,button{padding:8px;margin:4px 0;font-size:14px}
+  input{width:100%}
+  #log{background:#1b2332;padding:10px;border-radius:8px;height:300px;overflow-y:auto;font-size:13px;white-space:pre-wrap}
+  .ok{color:#4ea8ff} .err{color:#ff5e5e}
+</style>
+</head>
+<body>
+<h2>🔌 اختبار الاتصال بخادم باتل رويال</h2>
+<label>عنوان الخادم (ws:// أو wss://)</label>
+<input id="url" value="ws://localhost:3000">
+<label>اسمك</label>
+<input id="name" value="لاعب تجريبي">
+<button id="connectBtn">اتصال</button>
+<button id="moveBtn">أرسل حركة عشوائية</button>
+<div id="log"></div>
+<script>
+let ws;
+const log=(t,cls)=>{const d=document.getElementById('log');d.innerHTML+=`<div class="${cls||''}">${t}</div>`;d.scrollTop=d.scrollHeight;};
+
+document.getElementById('connectBtn').onclick=()=>{
+  const url=document.getElementById('url').value;
+  const name=document.getElementById('name').value;
+  ws=new WebSocket(url);
+  ws.onopen=()=>{ log('✅ تم الاتصال','ok'); ws.send(JSON.stringify({type:'join',room:'default',name})); };
+  ws.onmessage=(e)=>{ log('⬇️ '+e.data); };
+  ws.onclose=()=>log('🔌 انقطع الاتصال','err');
+  ws.onerror=()=>log('❌ خطأ بالاتصال','err');
+};
+
+document.getElementById('moveBtn').onclick=()=>{
+  if(!ws||ws.readyState!==1){ log('اتصل أولاً','err'); return; }
+  const x=(Math.random()*20-10).toFixed(2), z=(Math.random()*20-10).toFixed(2);
+  ws.send(JSON.stringify({type:'state',x:+x,y:0,z:+z,rotY:0}));
+  log('⬆️ أرسلت موضع: '+x+','+z);
+};
+</script>
+</body>
+</html>

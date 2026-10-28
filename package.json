@@ -1,0 +1,15 @@
+{
+  "name": "battle-royale-server",
+  "version": "1.0.0",
+  "description": "خادم WebSocket بسيط لمزامنة لاعبين أونلاين في لعبة باتل رويال",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
