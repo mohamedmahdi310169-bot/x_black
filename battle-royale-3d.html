@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>باتل رويال 3D</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" onerror="document.documentElement.insertAdjacentHTML('beforeend','&lt;div style=&quot;position:fixed;inset:0;background:#0f1420;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:sans-serif;z-index:9999&quot;&gt;⚠️ فشل تحميل مكتبة الرسوميات (الإنترنت ضعيف أو انقطع).&lt;br&gt;تأكد من اتصال إنترنت قوي ثم حدّث الصفحة.&lt;/div&gt;')"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 :root{--bg:#0f1420;--panel:#1b2332;--accent:#ff5e5e;--accent2:#4ea8ff;--text:#eef1f8;--zone:#ffcc4d;color-scheme:dark;}
@@ -105,6 +105,10 @@ button{background:var(--accent2);color:#fff;border:none;padding:8px 18px;border-
   <div id="help">WASD للتحرك • اسحب للتصويب • 🔫 للإطلاق • 💣 لرمي قنبلة • اجمع صناديق اللوت من القرى</div>
 </div>
 <script>
+window.onerror=function(msg){
+  document.documentElement.insertAdjacentHTML('beforeend','<div style="position:fixed;inset:0;background:#0f1420;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:sans-serif;z-index:9999">⚠️ صار خطأ أثناء تحميل اللعبة (ربما بسبب إنترنت ضعيف).<br>حدّث الصفحة وحاول مرة ثانية.<br><span style="font-size:11px;opacity:.6">'+msg+'</span></div>');
+  return true;
+};
 const box=document.getElementById('canvasBox');
 const hpEl=document.getElementById('hp'),killsEl=document.getElementById('kills'),
       aliveEl=document.getElementById('alive'),timerEl=document.getElementById('timer'),
