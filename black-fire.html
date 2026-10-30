@@ -36,8 +36,8 @@ h1{font-size:16px;margin:4px 0;color:var(--accent2)}
 .btnRow{display:flex;gap:10px}
 button{background:var(--accent2);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:14px;cursor:pointer}
 #help{font-size:12px;opacity:.7;text-align:center;max-width:560px}
-.overlay{position:absolute;inset:0;background:rgba(10,14,22,.97);display:none;align-items:center;justify-content:center;z-index:10;border-radius:10px}
-.card{background:var(--panel);padding:22px 24px;border-radius:12px;width:290px;max-width:90%;display:flex;flex-direction:column;gap:14px;max-height:92%;overflow-y:auto;text-align:center}
+.overlay{position:fixed;inset:0;background:rgba(10,14,22,.97);display:none;align-items:center;justify-content:center;z-index:999;padding:16px;}
+.card{background:var(--panel);padding:22px 24px;border-radius:12px;width:320px;max-width:92vw;display:flex;flex-direction:column;gap:14px;max-height:90vh;overflow-y:auto;text-align:center}
 .card h2{margin:0 0 4px;font-size:17px;color:var(--accent2)}
 .row{display:flex;flex-direction:column;gap:6px;font-size:13px;text-align:right}
 .row select,.row input[type=range],.row input[type=text]{width:100%;padding:6px;border-radius:6px;border:1px solid #3a4560;background:#0f1420;color:var(--text)}
